@@ -164,14 +164,63 @@ classDiagram
 ---
   
 ### 4. Interface Segregation Principle (ISP)
-`A class should not be forced to implement interfaces it does not use.`
+`A class should not be forced to implement interfaces it does not use; Split large interfaces into smaller, more specific ones.`
 
-**Why it is important:**
-Prevents creating large, unwieldy interfaces that force classes to implement unnecessary methods.
+**Why it is important:** Prevents creating large, unwieldy interfaces that force classes to implement unnecessary methods.
 
 - Without ISP
-- With ISP
+```mermaid
+classDiagram
+    direction TB
 
+    class Worker {
+        <<interface>>
+        +work()
+        +eat()
+    }
+
+    class Robot {
+        +work()
+        +eat()
+    }
+
+    Worker <|.. Robot
+```
+- With ISP
+```mermaid
+classDiagram
+    direction TB
+
+    class Workable {
+        <<interface>>
+        +work()
+    }
+
+    class Eatable {
+        <<interface>>
+        +eat()
+    }
+
+    class Human {
+        +work()
+        +eat()
+    }
+
+    class Robot {
+        +work()
+    }
+
+    Workable <|.. Human
+    Eatable <|.. Human
+    Workable <|.. Robot
+```
+
+**Why use ISP?**
+- **Prevents unnecessary implementation**: Classes aren’t burdened with methods they don’t need.
+- **Improves flexibility**: Smaller interfaces allow more granular control over what is implemented.
+- **Reduces code bloat**: Keeps classes lightweight and focused.
+
+---
 ### 5. Dependency Inversion Principle (DIP)
 `High-level modules should not depend on low-level modules. Both should depend on abstractions.`
 
