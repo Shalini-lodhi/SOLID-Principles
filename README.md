@@ -6,7 +6,7 @@ The **SOLID principles** are five fundamental design principles in object-orient
 - **Scalability**: Simplifies adding new features.
 - **Testability**: Improves the ability to write unit tests.
 - **Readability**: Makes the code more understandable for developers
-
+---
 ### 1. Single Responsibility Principle (SRP)
 `A class should have only one reason to change, meaning it should only have one job or responsibility.`
 
@@ -112,7 +112,56 @@ classDiagram
 Ensures polymorphism works correctly, and derived classes don’t break the functionality expected from the base class.
 
 - Without LSP
+```mermaid
+classDiagram
+    direction TB
+
+    class Rectangle {
+        -int width
+        -int height
+        +setWidth(int width)
+        +setHeight(int height)
+        +getArea() int
+    }
+
+    class Square {
+        +setWidth(int width)
+        +setHeight(int height)
+    }
+
+    Rectangle <|-- Square
+```
 - With LSP
+```mermaid
+classDiagram
+    direction TB
+
+    class Shape {
+        <<interface>>
+        +getArea() int
+    }
+
+    class Rectangle {
+        -int width
+        -int height
+        +Rectangle(int width, int height)
+        +getArea() int
+    }
+
+    class Square {
+        -int side
+        +Square(int side)
+        +getArea() int
+    }
+
+    Shape <|.. Rectangle
+    Shape <|.. Square
+```
+**Why use LSP?**
+- **Ensures polymorphism**: Subclasses can replace base classes without breaking the application.
+- **Improves reliability**: Derived classes won’t introduce unexpected behavior.
+- **Promotes reusability**: Generic code can work with any subclass
+---
   
 ### 4. Interface Segregation Principle (ISP)
 `A class should not be forced to implement interfaces it does not use.`
