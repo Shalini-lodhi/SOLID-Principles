@@ -14,7 +14,37 @@ The **SOLID principles** are five fundamental design principles in object-orient
 When a class has multiple responsibilities, changes to one responsibility can inadvertently impact the other, leading to bugs and harder maintenance.
 
 - Violates SRP: 
-- With SRP: 
+```mermaid
+classDiagram
+    class Invoice{
+        + calculateTotal()
+        + printInvoice()
+        + saveToDatabase()
+    }
+    class Main{
+        
+    }
+    Invoice --> Main
+```
+- With SRP:
+```mermaid
+classDiagram
+    class Invoice{
+        + calculateTotal()
+    }
+    class InvoicePrint{
+        + printInvoice()
+    }
+    class InvoiceRepository {
+        + saveToDatabase()
+    }
+    class Main{
+        
+    }
+    Invoice --> Main
+    InvoicePrint --> Main
+    InvoiceRepository --> Main
+```   
 
 ### 2. Open/Closed Principle (OCP)
 `A class should be open for extension but closed for modification.`
