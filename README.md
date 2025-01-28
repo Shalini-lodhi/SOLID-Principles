@@ -53,8 +53,54 @@ classDiagram
 You can add new functionality without altering existing code, minimizing the risk of introducing bugs.
 
 - Without OCP
-- With OCP
+```mermaid
+classDiagram
+    class PaymentProcessor{
+        + processPayment()
+    }
+    class Main{
+        //instantiate PaymentProcessor
+    }
+    PaymentProcessor --> Main
+```
 
+- With OCP
+```mermaid
+classDiagram
+    direction TB
+
+    class Payment {
+        <<interface>>
+        +processPayment()
+    }
+
+    class CreditCardPayment {
+        +processPayment()
+    }
+
+    class PayPalPayment {
+        +processPayment()
+    }
+
+    class PaymentProcessor {
+        +processPayment(payment: Payment)
+    }
+    class Main{
+
+    }
+
+    Payment <|.. CreditCardPayment
+    Payment <|.. PayPalPayment
+    PaymentProcessor --> Payment
+    PaymentProcessor --> Main
+```
+**Why use OCP?**
+- Minimizes risk: Existing code remains untouched when adding new
+- features, reducing the chances of introducing bugs.
+- Supports scalability: New functionalities can be added without altering stable code.
+- Eases testing: Each extension can be tested independently.
+
+---
 ### 3. Liskov Substitution Principle (LSP)
 `Derived classes should be substitutable for their base classes without altering the correctness of the program.`
 
