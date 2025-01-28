@@ -2,18 +2,17 @@
 The **SOLID principles** are five fundamental design principles in object-oriented programming that help developers create scalable, maintainable, and testable software. Each principle tackles common issues encountered in software design.
 
 #### Why SOLID Principles Are Important
-**Maintainability**: Easier to modify code without introducing bugs.
-**Scalability**: Simplifies adding new features.
-**Testability**: Improves the ability to write unit tests.
-**Readability**: Makes the code more understandable for developers
+- **Maintainability**: Easier to modify code without introducing bugs.
+- **Scalability**: Simplifies adding new features.
+- **Testability**: Improves the ability to write unit tests.
+- **Readability**: Makes the code more understandable for developers
 
 ### 1. Single Responsibility Principle (SRP)
 `A class should have only one reason to change, meaning it should only have one job or responsibility.`
 
-**Why it is important:**
-When a class has multiple responsibilities, changes to one responsibility can inadvertently impact the other, leading to bugs and harder maintenance.
+**Why it is important:** When a class has multiple responsibilities, changes to one responsibility can inadvertently impact the other, leading to bugs and harder maintenance.
 
-- Violates SRP: 
+- [Violates SRP](https://github.com/Shalini-lodhi/SOLID-Principles/blob/main/SingleResponsibilityPrinciple/WithoutSRP.java):
 ```mermaid
 classDiagram
     class Invoice{
@@ -26,7 +25,7 @@ classDiagram
     }
     Invoice --> Main
 ```
-- With SRP:
+- [With SRP](https://github.com/Shalini-lodhi/SOLID-Principles/blob/main/SingleResponsibilityPrinciple/WithSRP.java):
 ```mermaid
 classDiagram
     class Invoice{
@@ -45,7 +44,12 @@ classDiagram
     InvoicePrint --> Main
     InvoiceRepository --> Main
 ```   
-
+**Why use SRP?**
+- Simplifies debugging: When a class has only one responsibility, issues are easier to locate and fix.
+- Reduces coupling: Changes in one part of the system won’t affect unrelated parts.
+- Enhances readability: Smaller, focused classes are easier to understand.
+---
+  
 ### 2. Open/Closed Principle (OCP)
 `A class should be open for extension but closed for modification.`
 
