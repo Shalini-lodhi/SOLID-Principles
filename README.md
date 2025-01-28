@@ -228,4 +228,52 @@ classDiagram
 Reduces coupling and makes code easier to test and modify.
 
 - Without DIP
+```mermaid
+classDiagram
+    direction TB
+
+    class MySQLDatabase {
+        +connect()
+    }
+
+    class Application {
+        -MySQLDatabase database
+        +Application()
+        +start()
+    }
+
+    Application --> MySQLDatabase
+```
+
 - With DIP
+```mermaid
+classDiagram
+    direction TB
+
+    class Database {
+        <<interface>>
+        +connect()
+    }
+
+    class MySQLDatabase {
+        +connect()
+    }
+
+    class MongoDBDatabase {
+        +connect()
+    }
+
+    class Application {
+        -Database database
+        +Application(Database database)
+        +start()
+    }
+
+    Database <|.. MySQLDatabase
+    Database <|.. MongoDBDatabase
+    Application --> Database
+```
+**Why use DIP?**
+- **Decouples components**: The system becomes modular, allowing independent development and testing.
+- **Facilitates testing**: Mock dependencies can be easily injected for unit testing.
+- **Enables flexibility**: Changing the implementation (e.g., switching from MySQL to MongoDB) doesn’t require altering high-level logic.
