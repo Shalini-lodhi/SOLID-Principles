@@ -227,7 +227,7 @@ classDiagram
 **Why it is important:**
 Reduces coupling and makes code easier to test and modify.
 
-- Without DIP
+- [Without DIP](https://github.com/Shalini-lodhi/SOLID-Principles/blob/main/DependencyInversionPrinciple/WithoutDIP.java)
 ```mermaid
 classDiagram
     direction TB
@@ -245,7 +245,7 @@ classDiagram
     Application --> MySQLDatabase
 ```
 
-- With DIP
+- [With DIP](https://github.com/Shalini-lodhi/SOLID-Principles/blob/main/DependencyInversionPrinciple/WithDIP.java)
 ```mermaid
 classDiagram
     direction TB
